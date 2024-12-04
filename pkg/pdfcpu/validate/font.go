@@ -953,15 +953,9 @@ func validateType3FontDict(xRefTable *model.XRefTable, d types.Dict) error {
 	}
 
 	// Resources, optional, dict, since V1.2
-	d1, err := validateDictEntry(xRefTable, d, dictName, "Resources", OPTIONAL, model.V12, nil)
+	_, err = validateDictEntry(xRefTable, d, dictName, "Resources", OPTIONAL, model.V12, nil)
 	if err != nil {
 		return err
-	}
-	if d1 != nil {
-		_, err := validateResourceDict(xRefTable, d1)
-		if err != nil {
-			return err
-		}
 	}
 
 	// ToUnicode, optional, stream
