@@ -659,6 +659,12 @@ func validateMeasureDict(xRefTable *model.XRefTable, d types.Dict, sinceVersion 
 			// unknown coord system
 			return nil
 		}
+
+		// ignore geospatial data
+		if *coordSys == "GEO" {
+			return nil
+		}
+
 		return errors.Errorf("validateMeasureDict dict=%s entry=%s invalid dict entry: %s", dictName, "Subtype", coordSys.Value())
 	}
 
